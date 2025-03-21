@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Question } from "../types/quizTypes";
 import { QuizProps } from "../types/quizTypes";
+import logoForge from "/src/assets/logo-forge-grey.png"; // Importación del logo
 
 const Quiz = ({ questions, setCorrectAnswers }: QuizProps) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -20,7 +21,7 @@ const Quiz = ({ questions, setCorrectAnswers }: QuizProps) => {
   useEffect(() => {
     if (timeLeft === 0) {
       setMessage("❌ Sorry! Time flies and your chance has gone :(");
-      setTimeExpired(true); // Deshabilita respuestas
+      setTimeExpired(true);
     } else {
       const timer = setTimeout(() => setTimeLeft((prev) => prev - 1), 1000);
       return () => clearTimeout(timer);
@@ -35,7 +36,6 @@ const Quiz = ({ questions, setCorrectAnswers }: QuizProps) => {
   };
 
   const handleNext = () => {
-    // Si no se seleccionó una respuesta, cuenta como incorrecta
     if (selectedAnswer) {
       const key = `${selectedAnswer}_correct` as keyof Question["correct_answers"];
       const isCorrect = questions[currentQuestionIndex].correct_answers[key] === "true";
@@ -60,62 +60,68 @@ const Quiz = ({ questions, setCorrectAnswers }: QuizProps) => {
   }
 
   return (
-    <section className="w-full h-screen bg-[#C8D2DA] flex items-center justify-center px-[10%] md:px-[20%]">
+    <section className="w-full h-screen bg-[#C8D2DA] flex items-center justify-center px-[10%] md:px-[20%] relative">
       {/* Fondo con transparencia */}
       <div className="cover-background-quiz absolute inset-0 bg-cover bg-center opacity-70"></div>
 
-      <div className="quiz-container p-6 max-w-lg mx-auto text-center">
-      <h2 className="text-2xl font-bold mb-4">{questions[currentQuestionIndex].question}</h2>
+      {/* Contenedor para el logo en la esquina superior derecha */}
+      <div className="absolute top-6 right-6">
+        <img src={logoForge} alt="Forge Logo" className="w-[100px] md:w-[120px] lg:w-[140px]" />
+      </div>
 
-      {/* Opciones de respuesta */}
-      <div className="flex flex-col gap-2">
-        {Object.entries(questions[currentQuestionIndex].answers)
-          .filter(([_, answer]) => answer !== null)
-          .map(([key, answer]) => (
-            <button
-              key={key}
+      <div className="quiz-container p-6 max-w-lg mx-auto text-center relative z-10">
+        {/* Número de la pregunta */}
+        <h2 className="font-bebas-neue text-forge-blue text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] leading-tight">
+          Question {currentQuestionIndex + 1}/{questions.length}
+        </h2>
+
+        {/* Pregunta del quiz */}
+        <h3 className="font-sora text-forge-blue text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] font-normal leading-snug mt-2">
+          {questions[currentQuestionIndex].question}
+        </h3>
+
+        {/* Opciones de respuesta */}
+        <div className="flex flex-col gap-2">
+          {Object.entries(questions[currentQuestionIndex].answers)
+            .filter(([_, answer]) => answer !== null)
+            .map(([key, answer]) => (
+              <button key={key}
               onClick={() => handleAnswerSelection(key)}
               disabled={timeExpired}
-              className={`py-2 px-4 rounded-md border border-gray-300 text-lg transition-all ${
-                timeExpired
-                  ? "bg-gray-300 text-gray-500 cursor-not-allowed opacity-50" // ⚠️ Visualmente bloqueado
-                  : selectedAnswer === key
-                  ? "bg-blue-500 text-white"
-                  : "bg-white hover:bg-gray-100"
-              }`}
-            >
-              {answer}
-            </button>
-          ))}
+              className={`option-button ${selectedAnswer === key ? "selected" : ""} ${
+                timeExpired ? "cursor-not-allowed opacity-50" : ""
+              }`}>
+                {answer}
+              </button>
+            
+            ))}
+        </div>
+
+        {/* Temporizador y barra de progreso */}
+        <p className="text-lg font-semibold text-red-600 mt-4">{timeLeft} s</p>
+        <div className="w-full bg-gray-200 h-2 rounded-full my-2">
+          <div
+            className="bg-blue-500 h-2 rounded-full transition-all"
+            style={{ width: `${(timeLeft / 30) * 100}%` }}
+          ></div>
+        </div>
+
+        {/* Mensaje dinámico */}
+        {message && <p className="mt-2 text-lg font-medium">{message}</p>}
+
+        {/* Botón Next / Show me the results */}
+        <button
+          onClick={handleNext}
+          className={`mt-4 px-6 py-2 text-white font-bold rounded-md ${
+            currentQuestionIndex === questions.length - 1
+              ? "bg-purple-500 hover:bg-purple-600"
+              : "bg-green-500 hover:bg-green-600"
+          }`}
+        >
+          {currentQuestionIndex === questions.length - 1 ? "Show me the results" : "Next"}
+        </button>
       </div>
-
-      {/* Temporizador y barra de progreso */}
-      <p className="text-lg font-semibold text-red-600 mt-4">{timeLeft} s</p>
-      <div className="w-full bg-gray-200 h-2 rounded-full my-2">
-        <div
-          className="bg-blue-500 h-2 rounded-full transition-all"
-          style={{ width: `${(timeLeft / 30) * 100}%` }}
-        ></div>
-      </div>
-
-      {/* Mensaje dinámico */}
-      {message && <p className="mt-2 text-lg font-medium">{message}</p>}
-
-      {/* Botón Next / Show me the results */}
-      <button
-        onClick={handleNext}
-        className={`mt-4 px-6 py-2 text-white font-bold rounded-md ${
-          currentQuestionIndex === questions.length - 1
-            ? "bg-purple-500 hover:bg-purple-600" // Última pregunta: Morado
-            : "bg-green-500 hover:bg-green-600" // Preguntas anteriores: Verde
-        }`}
-      >
-        {currentQuestionIndex === questions.length - 1 ? "Show me the results" : "Next"}
-      </button>
-    </div>
-
     </section>
-    
   );
 };
 

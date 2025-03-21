@@ -46,6 +46,28 @@ body {
   background-image: url('/src/assets/lines-bg-quiz.png');
 }
 
+.option-button {
+  border-radius: 0;
+  border: 2px solid #4242E0;
+  font-family: 'Sora', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--forge-blue); /* Color del texto */
+  background-color: transparent; /* Fondo transparente por defecto */
+  padding: 10px 16px; /* Espaciado interno */
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.option-button:hover {
+  background-color: rgba(66, 66, 224, 0.5); /* Azul con 50% de transparencia */
+}
+
+.option-button.selected {
+  background-color: #4242E0; /* Azul al 100% */
+  color: white; /* Texto en blanco cuando está seleccionado */
+}
+
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
