@@ -49,17 +49,29 @@ const Results = ({ correctAnswers }: ResultsProps) => {
   const result = resultData.find((r) => correctAnswers === r.minScore) || resultData[0];
 
   return (
-    <div className="w-full h-screen flex flex-col justify-center items-center p-6 text-center">
-      <h2 className="text-2xl font-bold mb-4">Correct answers: {correctAnswers} of 5</h2>
-      <img src={result.img} alt="Result gif" className="w-64 h-64 mb-4" />
-      <p className="text-lg mb-4">{result.message}</p>
-      <button
-        className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg"
-        onClick={() => navigate("/")}
-      >
-        Try Again
-      </button>
-    </div>
+    <section className="w-full h-screen bg-[#4242E0] flex items-center justify-center px-[10%] md:px-[20%]">
+      {/* Fondo con transparencia */}
+      <div className="cover-background absolute inset-0 bg-cover bg-center opacity-70"></div>
+      
+      <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6 items-center relative z-10 text-center md:text-left">
+        {/* Columna izquierda - Resultado */}
+        <div>
+          <h2 className="text-3xl font-bold text-white">Correct answers: {correctAnswers} of 5</h2>
+        </div>
+        
+        {/* Columna derecha - Imagen y mensaje */}
+        <div className="flex flex-col items-center">
+          <img src={result.img} alt="Result gif" className="w-64 h-64 mb-4" />
+          <p className="text-lg text-white">{result.message}</p>
+          <button
+            className="mt-4 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg"
+            onClick={() => navigate("/")}
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    </section>
   );
 };
 

@@ -52,21 +52,57 @@ body {
   font-family: 'Sora', sans-serif;
   font-weight: 400;
   font-size: 1rem;
-  color: var(--forge-blue); /* Color del texto */
+  color: #4242E0; /* Color del texto */
   background-color: transparent; /* Fondo transparente por defecto */
   padding: 10px 16px; /* Espaciado interno */
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .option-button:hover {
+  border-radius: 0;
+  border: 2px solid #4242E0;
   background-color: rgba(66, 66, 224, 0.5); /* Azul con 50% de transparencia */
 }
 
 .option-button.selected {
+  border-radius: 0 !important;
+  border: 2px solid #4242E0 !important;
   background-color: #4242E0; /* Azul al 100% */
   color: white; /* Texto en blanco cuando está seleccionado */
 }
 
+.option-button:focus {
+  outline: none !important;
+  box-shadow: none !important; /* ✅ Elimina cualquier sombra de enfoque */
+}
+
+.alert-message {
+  font-family: "Sora", sans-serif;
+  font-size: 14px;
+  color: #959EA6;
+  margin-top: 8px;
+}
+
+.next-button {
+  border-radius: 0;
+  border: 2px solid #4242E0;
+  font-family: 'Sora', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: white; /* Texto en blanco */
+  background-color: #4242E0; /* Azul de Forge */
+  padding: 10px 20px;
+  transition: transform 0.3s ease; /* Solo transición en tamaño */
+}
+
+.next-button:hover {
+  transform: scale(0.95); /* Reduce tamaño en hover */
+}
+
+.next-button:focus {
+  outline: none !important;
+  box-shadow: none !important; /* ✅ Elimina cualquier sombra de enfoque */
+}
 
 button {
   border-radius: 8px;

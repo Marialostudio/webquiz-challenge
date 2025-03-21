@@ -20,7 +20,7 @@ const Quiz = ({ questions, setCorrectAnswers }: QuizProps) => {
 
   useEffect(() => {
     if (timeLeft === 0) {
-      setMessage("❌ Sorry! Time flies and your chance has gone :(");
+      setMessage("🚀 Sorry! Time flies and your chance has gone 😔");
       setTimeExpired(true);
     } else {
       const timer = setTimeout(() => setTimeLeft((prev) => prev - 1), 1000);
@@ -31,7 +31,7 @@ const Quiz = ({ questions, setCorrectAnswers }: QuizProps) => {
   const handleAnswerSelection = (key: string) => {
     if (!timeExpired) {
       setSelectedAnswer(key);
-      setMessage("✅ Ok, press the 'Next' button to dive into the next question.");
+      setMessage("Ok, press the 'Next' button to dive into the next question 🤩");
     }
   };
 
@@ -81,7 +81,7 @@ const Quiz = ({ questions, setCorrectAnswers }: QuizProps) => {
         </h3>
 
         {/* Opciones de respuesta */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 mt-8">
           {Object.entries(questions[currentQuestionIndex].answers)
             .filter(([_, answer]) => answer !== null)
             .map(([key, answer]) => (
@@ -98,28 +98,25 @@ const Quiz = ({ questions, setCorrectAnswers }: QuizProps) => {
         </div>
 
         {/* Temporizador y barra de progreso */}
-        <p className="text-lg font-semibold text-red-600 mt-4">{timeLeft} s</p>
+        <p className="text-lg font-semibold text-forge-blue mt-4">{timeLeft} s</p>
         <div className="w-full bg-gray-200 h-2 rounded-full my-2">
-          <div
-            className="bg-blue-500 h-2 rounded-full transition-all"
-            style={{ width: `${(timeLeft / 30) * 100}%` }}
-          ></div>
-        </div>
+  <div
+    className="h-2 rounded-full transition-all"
+    style={{ width: `${(timeLeft / 30) * 100}%`, backgroundColor: "#4242E0" }}
+  ></div>
+</div>
 
         {/* Mensaje dinámico */}
-        {message && <p className="mt-2 text-lg font-medium">{message}</p>}
+        {message && <p className="alert-message">{message}</p>}
 
         {/* Botón Next / Show me the results */}
         <button
-          onClick={handleNext}
-          className={`mt-4 px-6 py-2 text-white font-bold rounded-md ${
-            currentQuestionIndex === questions.length - 1
-              ? "bg-purple-500 hover:bg-purple-600"
-              : "bg-green-500 hover:bg-green-600"
-          }`}
-        >
-          {currentQuestionIndex === questions.length - 1 ? "Show me the results" : "Next"}
-        </button>
+  onClick={handleNext}
+  className="mt-5 px-6 py-2 next-button"
+>
+  {currentQuestionIndex === questions.length - 1 ? "Show me the results" : "Next"}
+</button>
+
       </div>
     </section>
   );
