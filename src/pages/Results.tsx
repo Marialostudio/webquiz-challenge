@@ -42,7 +42,7 @@ const Results = ({ correctAnswers }: ResultsProps) => {
     {
       minScore: 5,
       message: "Good work but, this is the easy level!",
-      img: "https://media2.giphy.com/media/V9xDjY81pxtglB6KtT/giphy.gif",
+      img: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHRuejgyOWFtc3Ezdnh0a3U1bGJnYTM2YmI2ZGd5Mng4NGZlYzFrciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WJZdOtltegO76/giphy.gif",
     },
   ];
 

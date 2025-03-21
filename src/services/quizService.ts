@@ -19,7 +19,7 @@ export const fetchQuizQuestions = async (): Promise<Question[]> => {
       }
   
       const data: Question[] = await response.json();
-      console.log("📌 Preguntas obtenidas:", data);
+    //   console.log("📌 Preguntas obtenidas:", data);
       return data;
     } catch (error) {
       console.error("Error al obtener preguntas:", error);

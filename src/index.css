@@ -1,12 +1,18 @@
 @import "tailwindcss";
 
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@theme {
+  --text-*: initial;
+  --font-bebas-neue: "Bebas Neue", "sans-serif";
+  --font-sora: "Sora", "sans-serif";
+  --text-cover: 10rem;
+  --color-forge-grey: #EBEFF2;
+  --color-forge-blue: #4242E0;
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+
+:root {
+
+  color: #EBEFF2;
   background-color: #242424;
 
   font-synthesis: none;
@@ -32,9 +38,12 @@ body {
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.cover-background {
+  background-image: url('/src/assets/lines-background.png');
+}
+
+.cover-background-quiz {
+  background-image: url('/src/assets/lines-bg-quiz.png');
 }
 
 button {

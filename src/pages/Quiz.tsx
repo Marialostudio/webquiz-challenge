@@ -60,7 +60,11 @@ const Quiz = ({ questions, setCorrectAnswers }: QuizProps) => {
   }
 
   return (
-    <div className="quiz-container p-6 max-w-lg mx-auto text-center">
+    <section className="w-full h-screen bg-[#C8D2DA] flex items-center justify-center px-[10%] md:px-[20%]">
+      {/* Fondo con transparencia */}
+      <div className="cover-background-quiz absolute inset-0 bg-cover bg-center opacity-70"></div>
+
+      <div className="quiz-container p-6 max-w-lg mx-auto text-center">
       <h2 className="text-2xl font-bold mb-4">{questions[currentQuestionIndex].question}</h2>
 
       {/* Opciones de respuesta */}
@@ -109,6 +113,9 @@ const Quiz = ({ questions, setCorrectAnswers }: QuizProps) => {
         {currentQuestionIndex === questions.length - 1 ? "Show me the results" : "Next"}
       </button>
     </div>
+
+    </section>
+    
   );
 };
 
