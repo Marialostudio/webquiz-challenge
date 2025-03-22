@@ -55,10 +55,10 @@ const Results = ({ correctAnswers }: ResultsProps) => {
       
       <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6 items-center relative z-10 text-center md:text-left">
         
-        <div>
+        <div className="backdrop-blur-xs bg-white/10 p-6 rounded-lg flex flex-col justify-center items-center h-full">
+          <h4 className="font-bebas-neue text-forge-grey text-left text-2xl sm:text-3xl md:text-4xl">You have scored</h4>
           <h2 className="font-bebas-neue text-forge-grey text-center text-[80px] leading-[1] sm:text-[120px] md:text-[180px] lg:text-[220px] xl:text-[280px]"> {correctAnswers}/5</h2>
         </div>
-        
         
         <div className="flex flex-col items-center">
           <img src={result.img} alt="Result gif" className="w-full h-auto mb-4" />
