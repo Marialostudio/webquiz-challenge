@@ -49,25 +49,25 @@ const Results = ({ correctAnswers }: ResultsProps) => {
   const result = resultData.find((r) => correctAnswers === r.minScore) || resultData[0];
 
   return (
-    <section className="w-full h-screen bg-[#4242E0] flex items-center justify-center px-[10%] md:px-[20%]">
+    <section className="w-full h-screen bg-[#4242E0] flex items-center justify-center px-[10%] md:px-[10%]">
       {/* Fondo con transparencia */}
       <div className="cover-background absolute inset-0 bg-cover bg-center opacity-70"></div>
       
       <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-6 items-center relative z-10 text-center md:text-left">
-        {/* Columna izquierda - Resultado */}
+        
         <div>
-          <h2 className="text-3xl font-bold text-white">Correct answers: {correctAnswers} of 5</h2>
+          <h2 className="font-bebas-neue text-forge-grey text-center text-[80px] leading-[1] sm:text-[120px] md:text-[180px] lg:text-[220px] xl:text-[280px]"> {correctAnswers}/5</h2>
         </div>
         
-        {/* Columna derecha - Imagen y mensaje */}
+        
         <div className="flex flex-col items-center">
-          <img src={result.img} alt="Result gif" className="w-64 h-64 mb-4" />
+          <img src={result.img} alt="Result gif" className="w-full h-auto mb-4" />
           <p className="text-lg text-white">{result.message}</p>
           <button
-            className="mt-4 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg"
+            className="text-forge-grey text-xl underline transition-transform duration-300 hover:scale-105 !bg-transparent !border-none !shadow-none mt-8"
             onClick={() => navigate("/")}
           >
-            Try Again
+            Wanna Play Again?
           </button>
         </div>
       </div>
