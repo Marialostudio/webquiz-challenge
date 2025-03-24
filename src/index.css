@@ -76,10 +76,15 @@ body {
   box-shadow: none !important; /* ✅ Elimina cualquier sombra de enfoque */
 }
 
+.no-hover:hover {
+  background-color: inherit !important;
+  cursor: not-allowed;
+}
+
 .alert-message {
   font-family: "Sora", sans-serif;
   font-size: 14px;
-  color: #959EA6;
+  color: #6c7984;
   margin-top: 8px;
 }
 

@@ -61,62 +61,40 @@ const Quiz = ({ questions, setCorrectAnswers }: QuizProps) => {
 
   return (
     <section className="w-full h-screen bg-[#C8D2DA] flex items-center justify-center px-[10%] md:px-[20%] relative">
-      {/* Fondo con transparencia */}
       <div className="cover-background-quiz absolute inset-0 bg-cover bg-center opacity-70"></div>
-
-      {/* Contenedor para el logo en la esquina superior derecha */}
       <div className="absolute top-6 right-6">
         <img src={logoForge} alt="Forge Logo" className="w-[100px] md:w-[120px] lg:w-[140px]" />
       </div>
-
       <div className="quiz-container p-6 max-w-lg mx-auto text-center relative z-10">
-        {/* Número de la pregunta */}
         <h2 className="font-bebas-neue text-forge-blue text-[48px] sm:text-[64px] md:text-[80px] lg:text-[96px] leading-tight">
           Question {currentQuestionIndex + 1}/{questions.length}
         </h2>
-
-        {/* Pregunta del quiz */}
         <h3 className="font-sora text-forge-blue text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] font-normal leading-snug mt-2">
           {questions[currentQuestionIndex].question}
         </h3>
-
-        {/* Opciones de respuesta */}
         <div className="flex flex-col gap-2 mt-8">
           {Object.entries(questions[currentQuestionIndex].answers)
             .filter(([_, answer]) => answer !== null)
             .map(([key, answer]) => (
               <button key={key}
-              onClick={() => handleAnswerSelection(key)}
-              disabled={timeExpired}
-              className={`option-button ${selectedAnswer === key ? "selected" : ""} ${
-                timeExpired ? "cursor-not-allowed opacity-50" : ""
-              }`}>
+                onClick={() => handleAnswerSelection(key)}
+                disabled={timeExpired}
+                className={`option-button ${selectedAnswer === key ? "selected" : ""} ${timeExpired ? "cursor-not-allowed opacity-50 no-hover" : ""}`}>
                 {answer}
               </button>
-            
             ))}
         </div>
-
-        {/* Temporizador y barra de progreso */}
         <p className="text-lg font-semibold text-forge-blue mt-4">{timeLeft} s</p>
         <div className="w-full bg-gray-200 h-2 rounded-full my-2">
-  <div
-    className="h-2 rounded-full transition-all"
-    style={{ width: `${(timeLeft / 30) * 100}%`, backgroundColor: "#4242E0" }}
-  ></div>
-</div>
-
-        {/* Mensaje dinámico */}
+          <div
+            className="h-2 rounded-full transition-all"
+            style={{ width: `${(timeLeft / 30) * 100}%`, backgroundColor: "#4242E0" }}
+          ></div>
+        </div>
         {message && <p className="alert-message">{message}</p>}
-
-        {/* Botón Next / Show me the results */}
-        <button
-  onClick={handleNext}
-  className="mt-5 px-6 py-2 next-button"
->
-  {currentQuestionIndex === questions.length - 1 ? "Show me the results" : "Next"}
-</button>
-
+        <button onClick={handleNext} className="mt-5 px-6 py-2 next-button">
+          {currentQuestionIndex === questions.length - 1 ? "Show me the results" : "Next"}
+        </button>
       </div>
     </section>
   );
