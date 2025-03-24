@@ -12,7 +12,7 @@ A fun and interactive quiz application built with React, TypeScript, and Tailwin
 
 ## Demo
 
-🚀 [Live Demo](https://webquiz-challenge-qcipxlq7r-marialostudios-projects.vercel.app)
+🚀 [Live Demo](https://webquiz-challenge.vercel.app/)
 
 ## Installation
 
