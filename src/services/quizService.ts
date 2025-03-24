@@ -1,7 +1,7 @@
 import { Question } from "../types/quizTypes";
 
 const API_URL = "https://quizapi.io/api/v1/questions";
-const API_KEY = "9h9hj50PzMwiSQpjmzGwAPqV31ENsPU6xseRVx7A"; // 🔑 Reemplázala con tu API Key
+const API_KEY = import.meta.env.VITE_API_KEY; // 🔑 Reemplázala con tu API Key
 
 export const fetchQuizQuestions = async (): Promise<Question[]> => {
     try {
